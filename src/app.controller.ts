@@ -7,4 +7,10 @@ export class AppController {
   root() {
     return { message: 'Index Page' };
   }
+
+  @Get('callback')
+  async callback() {
+    console.log('callback!!');
+    return { messaage: 'callback' };
+  }
 }
