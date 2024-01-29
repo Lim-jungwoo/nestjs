@@ -1,4 +1,12 @@
-import { Controller, Get, Query, Render, Req, Res } from '@nestjs/common';
+import {
+  BadRequestException,
+  Controller,
+  Get,
+  Query,
+  Render,
+  Req,
+  Res,
+} from '@nestjs/common';
 import Verifier from '@exoshtw/admob-ssv';
 import { Request, Response } from 'express';
 
@@ -11,23 +19,19 @@ export class AppController {
   }
 
   @Get('callback')
-  async callback(@Req() req: Request, @Res() res: Response) {
+  async callback(@Req() req: Request) {
     const verifier = new Verifier();
     verifier
       .verify(req.query)
       .then((isValid) => {
         if (!isValid) {
-          res.status(500);
-          res.json({
-            error: 'verifier error',
-          });
+          new BadRequestException("'Verifier is invalid'");
         }
         console.log(isValid);
       })
       .catch((e) => {
         console.log(e);
-        res.status(400);
-        res.statusMessage = 'Verifier has error';
+        new BadRequestException('Verifier has error');
         return { message: 'Verifier has error' };
         // res.send({ message: 'Verifier has error' });
       });
