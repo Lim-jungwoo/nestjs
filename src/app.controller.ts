@@ -28,8 +28,10 @@ export class AppController {
         console.log(e);
         res.status(400);
         res.statusMessage = 'Verifier has error';
-        res.send({ message: 'Verifier has error' });
+        return { message: 'Verifier has error' };
+        // res.send({ message: 'Verifier has error' });
       });
-    res.send({ message: 'Verify success!' });
+    // res.send({ message: 'Verify success!' });
+    return { message: 'Verify success!' };
   }
 }
