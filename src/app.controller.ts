@@ -36,6 +36,6 @@ export class AppController {
         // res.send({ message: 'Verifier has error' });
       });
     // res.send({ message: 'Verify success!' });
-    return { message: 'Verify success!' };
+    return { message: 'Verify success!', query: req.query };
   }
 }
