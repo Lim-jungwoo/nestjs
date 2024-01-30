@@ -37,6 +37,7 @@ export class AppController {
       });
     // console.log(req);
     console.log(req.query);
+    console.log(req.query.user_id);
     // res.send({ message: 'Verify success!' });
     return { message: 'Verify success!', query: req.query };
   }
