@@ -1,7 +1,9 @@
 import {
   BadRequestException,
+  Body,
   Controller,
   Get,
+  Post,
   Query,
   Render,
   Req,
@@ -16,6 +18,12 @@ export class AppController {
   @Render('index')
   root() {
     return { message: 'Index Page' };
+  }
+
+  @Post('test')
+  test(@Body() body: any) {
+    console.log(body);
+    return 'Success!';
   }
 
   @Get('callback')
